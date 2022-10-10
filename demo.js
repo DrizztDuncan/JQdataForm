@@ -5,36 +5,50 @@ $(document).ready(function () {
   ajaxobj.getall();
 
   // 新增按鈕
-  $("#addbutton").click(function () {
-    $("#dialog-addconfirm").dialog({
-      resizable: true,
-      height: $(window).height() * 0.4, // dialog視窗度
-      width: $(window).width() * 0.4,
-      modal: true,
-      buttons: {
-        // 自訂button名稱
-        新增: function (e) {
-          var url = "ajax/ajaxCard";
-          var cnname = $("#addcnname").val();
-          var enname = $("#addenname").val();
-          var sex = $('input:radio:checked[name="addsex"]').val();
-          var ajaxobj = new AjaxObject(url, "json");
-          ajaxobj.cnname = cnname;
-          ajaxobj.enname = enname;
-          ajaxobj.sex = sex;
-          ajaxobj.add();
+  $("#add-ppl").click(function (e) {
+    var url = "ajax/ajaxCard";
+    var cnname = $("#addcnname").val();
+    var enname = $("#addenname").val();
+    var sex = $('input:radio:checked[name="addsex"]').val();
+    var ajaxobj = new AjaxObject(url, "json");
+    ajaxobj.cnname = cnname;
+    ajaxobj.enname = enname;
+    ajaxobj.sex = sex;
+    ajaxobj.add();
 
-          e.preventDefault(); // avoid to execute the actual submit of the form.
-        },
-        重新填寫: function () {
-          $("#addform")[0].reset();
-        },
-        取消: function () {
-          $(this).dialog("close");
-        },
-      },
-    });
+    e.preventDefault(); // avoid to execute the actual submit of the form.
   });
+  // $("#addbutton").click(function () {
+  //   $("#dialog-addconfirm").dialog({
+  //     resizable: true,
+  //     height: $(window).height() * 0.4, // dialog視窗度
+  //     width: $(window).width() * 0.4,
+  //     modal: true,
+  //     buttons: {
+  //       // 自訂button名稱
+  //       Add: function (e) {
+  //         var url = "ajax/ajaxCard";
+  //         var cnname = $("#addcnname").val();
+  //         var enname = $("#addenname").val();
+  //         var sex = $('input:radio:checked[name="addsex"]').val();
+  //         var ajaxobj = new AjaxObject(url, "json");
+  //         ajaxobj.cnname = cnname;
+  //         ajaxobj.enname = enname;
+  //         ajaxobj.sex = sex;
+  //         ajaxobj.add();
+
+  //         e.preventDefault(); // avoid to execute the actual submit of the form.
+  //       },
+  //       ReFill: function () {
+  //         $("#addform")[0].reset();
+  //       },
+  //       Cancel: function () {
+  //         $(this).dialog("close");
+  //       },
+  //     },
+  //   });
+  // });
+
   // 搜尋按鈕
   $("#searchbutton").click(function () {
     $("#dialog-searchconfirm").dialog({
@@ -125,6 +139,8 @@ function initEdit(response) {
   var modifyid = $("#cardtable").attr("id").substring(12);
   $("#mocnname").val(response[0].cnname);
   $("#moenname").val(response[0].enname);
+  $("#mophone").val(response[0].phone);
+  $("#moemail").val(response[0].email);
   if (response[0].sex == 0) {
     $("#modifyman").prop("checked", true);
     $("#modifywoman").prop("checked", false);
@@ -140,28 +156,29 @@ function initEdit(response) {
     modal: true,
     buttons: {
       // 自訂button名稱
-      修改: function (e) {
+      Modify: function (e) {
         // $("#modifyform").submit();
         var url = "ajax/ajaxCard";
         var cnname = $("#mocnname").val();
         var enname = $("#moenname").val();
         var sex = $('input:radio:checked[name="mosex"]').val();
         var phone = $("#moenname").val(); //phone
-        var phone = $("#moenname").val();
+        var email = $("#moenname").val(); //email
         var ajaxobj = new AjaxObject(url, "json");
         ajaxobj.cnname = cnname;
         ajaxobj.enname = enname;
         ajaxobj.sex = sex;
         ajaxobj.id = modifyid;
         ajaxobj.phone = phone; //phone
+        ajaxobj.email = email; //email
         ajaxobj.modify();
 
         e.preventDefault(); // avoid to execute the actual submit of the form.
       },
-      重新填寫: function () {
+      ReFill: function () {
         $("#modifyform")[0].reset();
       },
-      取消: function () {
+      Cancel: function () {
         $(this).dialog("close");
       },
     },
@@ -188,39 +205,40 @@ AjaxObject.prototype.enname = "";
 AjaxObject.prototype.sex = "";
 AjaxObject.prototype.id = 0;
 AjaxObject.prototype.phone = ""; //phone
+AjaxObject.prototype.email = ""; //email
 AjaxObject.prototype.alertt = function () {
   alert("Alert:");
 };
 AjaxObject.prototype.getall = function () {
   response =
-    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900"},{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0900"},{"s_sn":"50","cnname":"Zhao Xueyu","enname":"Sharon","sex":"0","phone":"0900"},{"s_sn":"51","cnname":"Lai Jiarong","enname":"Yoki","sex":"1","phone":"0900"}]';
+    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900","email":"Peter@mail.com"},{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0901","email":"allen@mail.com"},{"s_sn":"50","cnname":"Zhao Xueyu","enname":"Sharon","sex":"0","phone":"0902","email":"sharon@mail.com"},{"s_sn":"51","cnname":"Lai Jiarong","enname":"Yoki","sex":"1","phone":"0903","email":"yoki@mail.com"}]';
   refreshTable(JSON.parse(response));
 };
 AjaxObject.prototype.add = function () {
   response =
-    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900"},{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0900"},{"s_sn":"50","cnname":"Zhao Xueyu","enname":"Sharon","sex":"0"},{"s_sn":"51","cnname":"Lai Jiarong","enname":"Yoki","sex":"1","phone":"0900"},{"s_sn":"52","cnname":"新增帳號","enname":"NewAccount","sex":"1","phone":"0900"}]';
+    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900","email":"Peter@mail.com"},{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0901","email":"allen@mail.com"},{"s_sn":"50","cnname":"Zhao Xueyu","enname":"Sharon","sex":"0","phone":"0902","email":"sharon@mail.com"},{"s_sn":"51","cnname":"Lai Jiarong","enname":"Yoki","sex":"1","phone":"0903","email":"yoki@mail.com"},{"s_sn":"52","cnname":"新增帳號","enname":"NewAccount","sex":"1","phone":"0900","email":"Peter@mail.com"}]';
   refreshTable(JSON.parse(response));
   $("#dialog-addconfirm").dialog("close");
 };
 AjaxObject.prototype.modify = function () {
   response =
-    '[{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0900"}]';
+    '[{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0901"}]';
   refreshTable(JSON.parse(response));
   $("#dialog-modifyconfirm").dialog("close");
 };
 AjaxObject.prototype.modify_get = function () {
   response =
-    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900"},{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0900"},{"s_sn":"50","cnname":"Zhao Xueyu","enname":"Sharon","sex":"0","phone":"0900"},{"s_sn":"51","cnname":"Lai Jiarong","enname":"Yoki","sex":"1","phone":"0900"}]';
+    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900","email":"Peter@mail.com"},{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0901","email":"allen@mail.com"},{"s_sn":"50","cnname":"Zhao Xueyu","enname":"Sharon","sex":"0","phone":"0902","email":"sharon@mail.com"},{"s_sn":"51","cnname":"Lai Jiarong","enname":"Yoki","sex":"1","phone":"0903","email":"yoki@mail.com"}]';
   initEdit(JSON.parse(response));
 };
 AjaxObject.prototype.search = function () {
   response =
-    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900"}]';
+    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900","email":"Peter@mail.com"}]';
   refreshTable(JSON.parse(response));
   $("#dialog-searchconfirm").dialog("close");
 };
 AjaxObject.prototype.delete = function () {
   response =
-    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900"},{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0900"}]';
+    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900","email":"Peter@mail.com"},{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0901","email":"allen@mail.com"}]';
   refreshTable(JSON.parse(response));
 };

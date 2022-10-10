@@ -1,5 +1,6 @@
 *,
-span {
+span,
+.btn {
   font-family: "Terminal", sans-serif;
   color: #00ff00;
 }
@@ -9,11 +10,21 @@ body {
   height: 100vh;
 }
 
-.button .btn {
+.button .btn,
+.btn {
   border: dashed #00ff00;
   color: #00ff00;
 }
 
 .btnBorder {
   border: dashed #00ff00;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.form-head th {
+  color: black;
+  background-color: #00ff00;
 }

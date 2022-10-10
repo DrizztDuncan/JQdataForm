@@ -38,29 +38,29 @@
 
     <title>Member Data Form</title>
   </head>
+
   <body
     class="bg-dark d-flex flex-column justify-content-center align-items-center"
   >
     <div>
-      <h1>
-        <span class="fs-4">Member Data Form</span>
-      </h1>
+      <h1 class="fs-2">Member Data Form</h1>
     </div>
 
     <br />
-    <div class="table bg-dark w-50">
+    <div class="table w-50">
       <table
         id="cardtable"
         cellpadding="0"
         cellspacing="0"
-        class="table table-dark table-striped"
+        class="table table-dark table-striped bg-dark"
       >
         <thead>
-          <tr>
+          <tr class="form-head">
             <th>Chinese Name</th>
             <th>English Name</th>
             <th>Gender</th>
             <th>Phone</th>
+            <th>Email</th>
             <th>Modify</th>
             <th>Delete</th>
           </tr>
@@ -69,67 +69,132 @@
       </table>
     </div>
 
-    <!--新增表單-->
-    <div id="dialog-addconfirm" title="新增表單" style="display: none">
-      <form method="post" id="addform">
-        <!-- Chinese Name -->
-        <div class="formcnname">
-          <div class="form-group">
-            <label for="element-1">Chinese Name</label>
-            <input
-              name="cnname"
-              style="width: 100px"
-              type="text"
-              id="addcnname"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <!-- English Name -->
-        <div class="formenname">
-          <div class="form-group">
-            <label for="element-1">English Name</label>
-            <input
-              name="enname"
-              style="width: 100px"
-              type="text"
-              id="addenname"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <!-- Gender -->
-        <div class="formsex">
-          <label for="element-1">Gender</label>
-          <div class="form-group">
-            <label
-              ><input
-                type="radio"
-                name="addsex"
-                value="man"
-                class="radio"
-                checked="checked"
-              />男</label
-            >
-            <label
-              ><input
-                type="radio"
-                name="addsex"
-                value="woman"
-                class="radio"
-              />女</label
-            >
-          </div>
-        </div>
-        <!-- 確認送出 -->
-      </form>
-    </div>
+    <!-- 新增表單 modal -->
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn"
+      data-bs-toggle="modal"
+      data-bs-target="#addBtn"
+    >
+      ADD
+    </button>
 
-    <div class="button">
-      <button id="addbutton" class="btn">Add</button>
-      <button id="searchbutton" class="btn">Search</button>
-    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="addBtn">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="add-btn">Add People</h5>
+            <button type="button" class="btn" data-bs-dismiss="modal">
+              <i class="bi bi-x-lg"></i>
+            </button>
+            <!-- <i type="button" class="bi bi-x-lg" data-bs-dismiss="modal"></i> -->
+          </div>
+          <div class="modal-body">
+            <!-- Transplant from orgin addform -->
+            <form method="post" id="add-form">
+              <!-- Chinese Name -->
+              <div class="formcnname">
+                <div class="form-group">
+                  <label for="element-1">Chinese Name</label>
+                  <input
+                    name="cnname"
+                    style="width: 100px"
+                    type="text"
+                    id="addcnname"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <!-- English Name -->
+              <div class="formenname">
+                <div class="form-group">
+                  <label for="element-1">English Name</label>
+                  <input
+                    name="enname"
+                    style="width: 100px"
+                    type="text"
+                    id="addenname"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <!-- Gender -->
+              <div class="formsex">
+                <label for="element-1">Gender</label>
+                <div class="form-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="addsex"
+                      value="man"
+                      class="radio"
+                      checked="checked"
+                    />Male</label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="addsex"
+                      value="woman"
+                      class="radio"
+                    />Female</label
+                  >
+                </div>
+              </div>
 
+              <!-- Phone -->
+              <div class="formphone">
+                <div class="form-group">
+                  <label for="element-1">Phone</label>
+                  <input
+                    name="phone"
+                    style="width: 100px"
+                    type="tel"
+                    id="addphone"
+                    class="form-control"
+                    placeholder="0910"
+                    pattern="[0-9]{4}"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="formemail">
+                <div class="form-group">
+                  <label for="element-1">Email</label>
+                  <input
+                    name="email"
+                    style="width: 100px"
+                    type="email"
+                    id="add-email"
+                    class="form-control"
+                    placeholder="xxx@mail.com"
+                    maxlength="64"
+                    pattern=".+@mail.com"
+                    required
+                  />
+                </div>
+              </div>
+              <!-- 確認送出 -->
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="submit"
+              for="#add-phone #add-email"
+              class="btn"
+              id="add-ppl"
+            >
+              Add
+            </button>
+            <button type="button" class="btn">Refill</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--搜尋表單-->
     <div id="dialog-searchconfirm" title="搜尋表單" style="display: none">
       <form method="post" id="searchform">
@@ -169,7 +234,7 @@
                 name="sesex"
                 value="man"
                 class="seradio"
-              />男</label
+              />Male</label
             >
             <label
               ><input
@@ -177,7 +242,7 @@
                 name="sesex"
                 value="woman"
                 class="seradio"
-              />女</label
+              />Female</label
             >
           </div>
         </div>
@@ -235,6 +300,32 @@
                 id="modifywoman"
               />Female</label
             >
+          </div>
+        </div>
+        <!-- Phone -->
+        <div class="formenname">
+          <div class="form-group">
+            <label for="element-1">Phone</label>
+            <input
+              name="mophone"
+              style="width: 100px"
+              type="text"
+              id="mophone"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <!-- Email -->
+        <div class="formenname">
+          <div class="form-group">
+            <label for="element-1">Email</label>
+            <input
+              name="moemail"
+              style="width: 100px"
+              type="text"
+              id="moemail"
+              class="form-control"
+            />
           </div>
         </div>
 
