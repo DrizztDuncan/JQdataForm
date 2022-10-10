@@ -1,0 +1,19 @@
+*,
+span {
+  font-family: "Terminal", sans-serif;
+  color: #00ff00;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.button .btn {
+  border: dashed #00ff00;
+  color: #00ff00;
+}
+
+.btnBorder {
+  border: dashed #00ff00;
+}

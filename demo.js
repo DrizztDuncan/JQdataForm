@@ -95,24 +95,26 @@ function refreshTable(data) {
   $("#cardtable tbody > tr").remove();
   $.each(data, function (key, item) {
     var strsex = "";
-    if (item.sex == 0) strsex = "男";
-    else strsex = "女";
+    if (item.sex == 0) strsex = "Male";
+    else strsex = "Female";
     var row = $("<tr></tr>");
     row.append($("<td></td>").html(item.cnname));
     row.append($("<td></td>").html(item.enname));
     row.append($("<td></td>").html(strsex));
+    row.append($("<td></td>").html(item.phone)); //phone
+    row.append($("<td></td>").html(item.email)); //email
     row.append(
       $("<td></td>").html(
         '<button id="modifybutton' +
           item.s_sn +
-          '" class="modifybutton" style="font-size:16px;font-weight:bold;">修改 <span class="glyphicon glyphicon-list-alt"></span></button>'
+          '" class="modifybutton btn btnBorder"><i class="bi bi-pencil-fill"></i></button>'
       )
     );
     row.append(
       $("<td></td>").html(
         '<button id="deletebutton' +
           item.s_sn +
-          '" class="deletebutton" style="font-size:16px;font-weight:bold;">刪除 <span class="glyphicon glyphicon-trash"></span></button>'
+          '" class="deletebutton btn btnBorder"><i class="bi bi-trash3-fill"></i></button>'
       )
     );
     $("#cardtable").append(row);
@@ -145,6 +147,7 @@ function initEdit(response) {
         var enname = $("#moenname").val();
         var sex = $('input:radio:checked[name="mosex"]').val();
         var phone = $("#moenname").val(); //phone
+        var phone = $("#moenname").val();
         var ajaxobj = new AjaxObject(url, "json");
         ajaxobj.cnname = cnname;
         ajaxobj.enname = enname;
@@ -190,34 +193,34 @@ AjaxObject.prototype.alertt = function () {
 };
 AjaxObject.prototype.getall = function () {
   response =
-    '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0","phone":"0900"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","sex":"1"}]';
+    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900"},{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0900"},{"s_sn":"50","cnname":"Zhao Xueyu","enname":"Sharon","sex":"0","phone":"0900"},{"s_sn":"51","cnname":"Lai Jiarong","enname":"Yoki","sex":"1","phone":"0900"}]';
   refreshTable(JSON.parse(response));
 };
 AjaxObject.prototype.add = function () {
   response =
-    '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0","phone":"0900"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","sex":"1"},{"s_sn":"52","cnname":"新增帳號","enname":"NewAccount","sex":"1"}]';
+    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900"},{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0900"},{"s_sn":"50","cnname":"Zhao Xueyu","enname":"Sharon","sex":"0"},{"s_sn":"51","cnname":"Lai Jiarong","enname":"Yoki","sex":"1","phone":"0900"},{"s_sn":"52","cnname":"新增帳號","enname":"NewAccount","sex":"1","phone":"0900"}]';
   refreshTable(JSON.parse(response));
   $("#dialog-addconfirm").dialog("close");
 };
 AjaxObject.prototype.modify = function () {
   response =
-    '[{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0","phone":"0900"}]';
+    '[{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0900"}]';
   refreshTable(JSON.parse(response));
   $("#dialog-modifyconfirm").dialog("close");
 };
 AjaxObject.prototype.modify_get = function () {
   response =
-    '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0","phone":"0900"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","sex":"1"}]';
+    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900"},{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0900"},{"s_sn":"50","cnname":"Zhao Xueyu","enname":"Sharon","sex":"0","phone":"0900"},{"s_sn":"51","cnname":"Lai Jiarong","enname":"Yoki","sex":"1","phone":"0900"}]';
   initEdit(JSON.parse(response));
 };
 AjaxObject.prototype.search = function () {
   response =
-    '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0","phone":"0900"}]';
+    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900"}]';
   refreshTable(JSON.parse(response));
   $("#dialog-searchconfirm").dialog("close");
 };
 AjaxObject.prototype.delete = function () {
   response =
-    '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0","phone":"0900"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"}]';
+    '[{"s_sn":"35","cnname":"Qiu Xiaogan","enname":"Peter","sex":"0","phone":"0900"},{"s_sn":"49","cnname":"Cai Fanxin","enname":"Allen","sex":"0","phone":"0900"}]';
   refreshTable(JSON.parse(response));
 };

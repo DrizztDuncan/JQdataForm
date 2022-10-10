@@ -1,0 +1,19 @@
+{
+  "name": "jqdataform",
+  "version": "1.0.0",
+  "description": "JQuery Form",
+  "main": "demo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrizztDuncan/JQdataForm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DrizztDuncan/JQdataForm/issues"
+  },
+  "homepage": "https://github.com/DrizztDuncan/JQdataForm#readme"
+}
