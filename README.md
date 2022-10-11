@@ -6,7 +6,9 @@
 
 
 
-使用 Bootstap 5 & JQuery 美化表單和 Ajax 實作，主要參考考題內容、官方文件以及 Youtube、Stackoverflow。
+使用 Bootstap 5 & JQuery 美化表單和 Ajax 實作，
+設計發想 cyberpunk 的 terminal 風格，
+主要參考考題內容、官方文件以及 Youtube、Stackoverflow。
 
 
 ### Built With
