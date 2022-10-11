@@ -152,16 +152,16 @@ function refreshTable(data) {
     row.append($("<td></td>").html(item.email)); //email
     row.append(
       $("<td></td>").html(
-        '<button id="modBtn' +
+        '<i id="modBtn' +
           item.s_sn +
-          '" class="modBtn btn btnBorder" data-bs-toggle="modal" data-bs-target="#modBtn"><i class="bi bi-pencil-fill"></i></button>'
+          '" class="modBtn btn btnBorder bi bi-pencil-fill" data-bs-toggle="modal" data-bs-target="#modBtn"></i>'
       )
     );
     row.append(
       $("<td></td>").html(
-        '<button id="deletebutton' +
+        '<i id="deletebutton' +
           item.s_sn +
-          '" class="deletebutton btn btnBorder"><i class="bi bi-trash3-fill"></i></button>'
+          '" class="deletebutton btn btnBorder bi bi-trash3-fill"></i>'
       )
     );
     $("#cardtable").append(row);

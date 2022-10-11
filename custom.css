@@ -10,10 +10,14 @@ body {
   height: 100vh;
 }
 
-.button .btn,
 .btn {
   border: dashed #00ff00;
   color: #00ff00;
+}
+
+.btn:hover {
+  border: dashed white;
+  color: white;
 }
 
 .btnBorder {
@@ -61,4 +65,9 @@ input[type="radio"] {
 
 input[type="email"] {
   width: 400px;
+}
+
+tr:hover td {
+  background-color: rgb(20, 58, 0);
+  color: green;
 }
