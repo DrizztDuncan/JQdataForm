@@ -1,12 +1,12 @@
 # JQdataForm
-
+![formProjectShot](https://user-images.githubusercontent.com/39251171/194984580-dc9a31e8-732a-4e0c-9fdc-1605ac9b929b.PNG)
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-[![JQdataForm]](formProjectShot.PNG)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+
+使用 Bootstap 5 & JQuery 美化表單和 Ajax 實作
 
 Here's why:
 
@@ -19,3 +19,8 @@ Of course, no one template will serve all projects since your needs may be diffe
 Use the `BLANK_README.md` to get started.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Built With
+
+* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![JQuery][JQuery.com]][JQuery-url]
