@@ -69,21 +69,32 @@
       </table>
     </div>
 
+    <!-- btn container -->
+    <div>
+      <button
+        type="button"
+        class="btn"
+        data-bs-toggle="modal"
+        data-bs-target="#addBtn"
+      >
+        ADD
+      </button>
+      <button
+        type="button"
+        class="btn"
+        data-bs-toggle="modal"
+        data-bs-target="#searchBtn"
+      >
+        SEARCH
+      </button>
+    </div>
     <!-- 新增表單 modal -->
     <!-- Button trigger modal -->
-    <button
-      type="button"
-      class="btn"
-      data-bs-toggle="modal"
-      data-bs-target="#addBtn"
-    >
-      ADD
-    </button>
 
     <!-- Modal -->
     <div class="modal fade" id="addBtn">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-dark">
           <div class="modal-header">
             <h5 class="modal-title" id="add-btn">Add People</h5>
             <button type="button" class="btn" data-bs-dismiss="modal">
@@ -100,10 +111,11 @@
                   <label for="element-1">Chinese Name</label>
                   <input
                     name="cnname"
-                    style="width: 100px"
                     type="text"
                     id="addcnname"
                     class="form-control"
+                    size="10"
+                    maxlength="10"
                   />
                 </div>
               </div>
@@ -113,10 +125,11 @@
                   <label for="element-1">English Name</label>
                   <input
                     name="enname"
-                    style="width: 100px"
                     type="text"
                     id="addenname"
                     class="form-control"
+                    size="40"
+                    maxlength="40"
                   />
                 </div>
               </div>
@@ -150,13 +163,14 @@
                   <label for="element-1">Phone</label>
                   <input
                     name="phone"
-                    style="width: 100px"
                     type="tel"
                     id="addphone"
                     class="form-control"
                     placeholder="0910"
                     pattern="[0-9]{4}"
                     required
+                    size="4"
+                    maxlength="4"
                   />
                 </div>
               </div>
@@ -167,7 +181,6 @@
                   <label for="element-1">Email</label>
                   <input
                     name="email"
-                    style="width: 100px"
                     type="email"
                     id="add-email"
                     class="form-control"
@@ -175,6 +188,8 @@
                     maxlength="64"
                     pattern=".+@mail.com"
                     required
+                    size="30"
+                    maxlength="30"
                   />
                 </div>
               </div>
@@ -182,153 +197,277 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="submit" form="add-form" class="btn" id="add-ppl">
-              Add
-            </button>
-            <button type="button" class="btn">Refill</button>
+            <input
+              type="submit"
+              form="add-form"
+              class="btn"
+              id="add-ppl"
+              value="Add"
+            />
+
+            <input
+              type="submit"
+              form="add-form"
+              class="btn"
+              id="Refill-ppl"
+              value="Refill"
+            />
           </div>
         </div>
       </div>
     </div>
     <!--搜尋表單-->
-    <div id="dialog-searchconfirm" title="搜尋表單" style="display: none">
-      <form method="post" id="searchform">
-        <!-- Chinese Name -->
-        <div class="formcnname">
-          <div class="form-group">
-            <label for="element-1">Chinese Name</label>
+
+    <!-- Modal -->
+    <div class="modal fade" id="searchBtn">
+      <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+          <div class="modal-header">
+            <h5 class="modal-title" id="se-btn">Search People</h5>
+            <button type="button" class="btn" data-bs-dismiss="modal">
+              <i class="bi bi-x-lg"></i>
+            </button>
+            <!-- <i type="button" class="bi bi-x-lg" data-bs-dismiss="modal"></i> -->
+          </div>
+          <div class="modal-body">
+            <!-- Transplant from orgin addform -->
+            <form method="post" id="add-form">
+              <!-- Chinese Name -->
+              <div class="formcnname">
+                <div class="form-group">
+                  <label for="element-1">Chinese Name</label>
+                  <input
+                    name="cnname"
+                    type="text"
+                    id="secnname"
+                    class="form-control"
+                    size="10"
+                    maxlength="10"
+                  />
+                </div>
+              </div>
+              <!-- English Name -->
+              <div class="formenname">
+                <div class="form-group">
+                  <label for="element-1">English Name</label>
+                  <input
+                    name="enname"
+                    type="text"
+                    id="seenname"
+                    class="form-control"
+                    size="40"
+                    maxlength="40"
+                  />
+                </div>
+              </div>
+              <!-- Gender -->
+              <div class="formsex">
+                <label for="element-1">Gender</label>
+                <div class="form-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="sesex"
+                      value="man"
+                      class="radio"
+                      checked="checked"
+                    />Male</label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="addsex"
+                      value="woman"
+                      class="radio"
+                    />Female</label
+                  >
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="formphone">
+                <div class="form-group">
+                  <label for="element-1">Phone</label>
+                  <input
+                    name="phone"
+                    type="tel"
+                    id="addphone"
+                    class="form-control"
+                    placeholder="0910"
+                    pattern="[0-9]{4}"
+                    required
+                    size="4"
+                    maxlength="4"
+                  />
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="formemail">
+                <div class="form-group">
+                  <label for="element-1">Email</label>
+                  <input
+                    name="email"
+                    type="email"
+                    id="add-email"
+                    class="form-control"
+                    placeholder="xxx@mail.com"
+                    maxlength="64"
+                    pattern=".+@mail.com"
+                    required
+                    size="30"
+                    maxlength="30"
+                  />
+                </div>
+              </div>
+              <!-- 確認送出 -->
+            </form>
+          </div>
+          <div class="modal-footer">
             <input
-              name="cnname"
-              style="width: 100px"
-              type="text"
-              id="secnname"
-              class="form-control"
+              type="submit"
+              form="add-form"
+              class="btn"
+              id="search-ppl"
+              value="Search"
+            />
+
+            <input
+              type="reset"
+              form="add-form"
+              class="btn"
+              id="Refill-ppl"
+              value="Refill"
             />
           </div>
         </div>
-        <!-- English Name -->
-        <div class="formenname">
-          <div class="form-group">
-            <label for="element-1">English Name</label>
-            <input
-              name="enname"
-              style="width: 100px"
-              type="text"
-              id="seenname"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <!-- Gender -->
-        <div class="formsex">
-          <label for="element-1">Gender</label>
-          <div class="form-group">
-            <label
-              ><input
-                type="radio"
-                name="sesex"
-                value="man"
-                class="seradio"
-              />Male</label
-            >
-            <label
-              ><input
-                type="radio"
-                name="sesex"
-                value="woman"
-                class="seradio"
-              />Female</label
-            >
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
-
     <!--Modify表單-->
-    <div id="dialog-modifyconfirm" title="修改表單" style="display: none">
-      <form method="post" id="modifyform">
-        <!-- Chinese Name -->
-        <div class="formcnname">
-          <div class="form-group">
-            <label for="element-1">Chinese Name</label>
-            <input
-              name="cnname"
-              style="width: 100px"
-              type="text"
-              id="mocnname"
-              class="form-control"
-            />
+    <!-- Modal -->
+    <div class="modal fade" id="modBtn">
+      <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+          <div class="modal-header">
+            <h5 class="modal-title" id="se-btn">Modify Data</h5>
+            <button type="button" class="btn" data-bs-dismiss="modal">
+              <i class="bi bi-x-lg"></i>
+            </button>
+            <!-- <i type="button" class="bi bi-x-lg" data-bs-dismiss="modal"></i> -->
           </div>
-        </div>
-        <!-- English Name -->
-        <div class="formenname">
-          <div class="form-group">
-            <label for="element-1">English Name</label>
-            <input
-              name="enname"
-              style="width: 100px"
-              type="text"
-              id="moenname"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <!-- Gender -->
-        <div class="formsex">
-          <label for="element-1">Gender</label>
-          <div class="sex-group">
-            <label
-              ><input
-                type="radio"
-                name="mosex"
-                value="man"
-                class="radio"
-                id="modifyman"
-              />Male</label
-            >
-            <label
-              ><input
-                type="radio"
-                name="mosex"
-                value="woman"
-                class="radio"
-                id="modifywoman"
-              />Female</label
-            >
-          </div>
-        </div>
-        <!-- Phone -->
-        <div class="formenname">
-          <div class="form-group">
-            <label for="element-1">Phone</label>
-            <input
-              name="mophone"
-              style="width: 100px"
-              type="text"
-              id="mophone"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <!-- Email -->
-        <div class="formenname">
-          <div class="form-group">
-            <label for="element-1">Email</label>
-            <input
-              name="moemail"
-              style="width: 100px"
-              type="text"
-              id="moemail"
-              class="form-control"
-            />
-          </div>
-        </div>
+          <div class="modal-body">
+            <!-- Transplant from orgin addform -->
+            <form method="post" id="mod-form">
+              <!-- Chinese Name -->
+              <div class="formcnname">
+                <div class="form-group">
+                  <label for="element-1">Chinese Name</label>
+                  <input
+                    name="cnname"
+                    type="text"
+                    id="modnname"
+                    class="form-control"
+                    size="10"
+                    maxlength="10"
+                  />
+                </div>
+              </div>
+              <!-- English Name -->
+              <div class="formenname">
+                <div class="form-group">
+                  <label for="element-1">English Name</label>
+                  <input
+                    name="enname"
+                    type="text"
+                    id="modenname"
+                    class="form-control"
+                    size="40"
+                    maxlength="40"
+                  />
+                </div>
+              </div>
+              <!-- Gender -->
+              <div class="formsex">
+                <label for="element-1">Gender</label>
+                <div class="form-group">
+                  <label
+                    ><input
+                      type="radio"
+                      name="sesex"
+                      value="man"
+                      class="radio"
+                      checked="checked"
+                    />Male</label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="addsex"
+                      value="woman"
+                      class="radio"
+                    />Female</label
+                  >
+                </div>
+              </div>
 
-        <div class="formsid" style="display: none">
-          <input name="sid" id="modifysid" />
+              <!-- Phone -->
+              <div class="formphone">
+                <div class="form-group">
+                  <label for="element-1">Phone</label>
+                  <input
+                    name="phone"
+                    type="tel"
+                    id="modphone"
+                    class="form-control"
+                    placeholder="0910"
+                    pattern="[0-9]{4}"
+                    required
+                    size="4"
+                    maxlength="4"
+                  />
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="formemail">
+                <div class="form-group">
+                  <label for="element-1">Email</label>
+                  <input
+                    name="email"
+                    type="email"
+                    id="mod-email"
+                    class="form-control"
+                    placeholder="xxx@mail.com"
+                    maxlength="64"
+                    pattern=".+@mail.com"
+                    required
+                    size="30"
+                    maxlength="30"
+                  />
+                </div>
+              </div>
+              <!-- 確認送出 -->
+            </form>
+          </div>
+          <div class="modal-footer">
+            <input
+              type="submit"
+              form="mod-form"
+              class="btn"
+              id="mod-ppl"
+              value="Modify"
+            />
+
+            <input
+              type="reset"
+              form="add-form"
+              class="btn"
+              id="Refill-ppl"
+              value="Refill"
+            />
+          </div>
         </div>
-        <!-- 確認送出 -->
-      </form>
+      </div>
     </div>
     <script src="demo.js"></script>
   </body>

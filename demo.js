@@ -50,37 +50,51 @@ $(document).ready(function () {
   // });
 
   // 搜尋按鈕
-  $("#searchbutton").click(function () {
-    $("#dialog-searchconfirm").dialog({
-      resizable: true,
-      height: $(window).height() * 0.4, // dialog視窗度
-      width: $(window).width() * 0.4,
-      modal: true,
-      buttons: {
-        // 自訂button名稱
-        搜尋: function (e) {
-          var url = "ajax/ajaxCard";
-          // var data = $("#searchform").serialize();
-          var cnname = $("#secnname").val();
-          var enname = $("#seenname").val();
-          var sex = $('input:radio:checked[name="sesex"]').val();
-          var ajaxobj = new AjaxObject(url, "json");
-          ajaxobj.cnname = cnname;
-          ajaxobj.enname = enname;
-          ajaxobj.sex = sex;
-          ajaxobj.search();
+  $("#search-ppl").click(function (e) {
+    var url = "ajax/ajaxCard";
+    // var data = $("#searchform").serialize();
+    var cnname = $("#secnname").val();
+    var enname = $("#seenname").val();
+    var sex = $('input:radio:checked[name="sesex"]').val();
+    var ajaxobj = new AjaxObject(url, "json");
+    ajaxobj.cnname = cnname;
+    ajaxobj.enname = enname;
+    ajaxobj.sex = sex;
+    ajaxobj.search();
 
-          e.preventDefault(); // avoid to execute the actual submit of the form.
-        },
-        重新填寫: function () {
-          $("#searchform")[0].reset();
-        },
-        取消: function () {
-          $(this).dialog("close");
-        },
-      },
-    });
+    e.preventDefault(); // avoid to execute the actual submit of the form.
   });
+  // $("#searchbutton").click(function () {
+  //   $("#dialog-searchconfirm").dialog({
+  //     resizable: true,
+  //     height: $(window).height() * 0.4, // dialog視窗度
+  //     width: $(window).width() * 0.4,
+  //     modal: true,
+  //     buttons: {
+  //       // 自訂button名稱
+  //       搜尋: function (e) {
+  //         var url = "ajax/ajaxCard";
+  //         // var data = $("#searchform").serialize();
+  //         var cnname = $("#secnname").val();
+  //         var enname = $("#seenname").val();
+  //         var sex = $('input:radio:checked[name="sesex"]').val();
+  //         var ajaxobj = new AjaxObject(url, "json");
+  //         ajaxobj.cnname = cnname;
+  //         ajaxobj.enname = enname;
+  //         ajaxobj.sex = sex;
+  //         ajaxobj.search();
+
+  //         e.preventDefault(); // avoid to execute the actual submit of the form.
+  //       },
+  //       重新填寫: function () {
+  //         $("#searchform")[0].reset();
+  //       },
+  //       取消: function () {
+  //         $(this).dialog("close");
+  //       },
+  //     },
+  //   });
+  // });
   // 修改鈕
   $("#cardtable").on("click", ".modifybutton", function () {
     var ajaxobj = new AjaxObject(url, "json");
@@ -94,15 +108,34 @@ $(document).ready(function () {
     ajaxobj.delete();
   });
 
-  // 自適應視窗
-  $(window).resize(function () {
-    var wWidth = $(window).width();
-    var dWidth = wWidth * 0.4;
-    var wHeight = $(window).height();
-    var dHeight = wHeight * 0.4;
-    $("#dialog-confirm").dialog("option", "width", dWidth);
-    $("#dialog-confirm").dialog("option", "height", dHeight);
+  $("#modBtn").click(function (e) {
+    var url = "ajax/ajaxCard";
+    var cnname = $("#mocnname").val();
+    var enname = $("#moenname").val();
+    var sex = $('input:radio:checked[name="mosex"]').val();
+    var phone = $("#moenname").val(); //phone
+    var email = $("#moenname").val(); //email
+    var ajaxobj = new AjaxObject(url, "json");
+    ajaxobj.cnname = cnname;
+    ajaxobj.enname = enname;
+    ajaxobj.sex = sex;
+    ajaxobj.id = modifyid;
+    ajaxobj.phone = phone; //phone
+    ajaxobj.email = email; //email
+    ajaxobj.modify();
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
   });
+
+  // 自適應視窗
+  // $(window).resize(function () {
+  //   var wWidth = $(window).width();
+  //   var dWidth = wWidth * 0.4;
+  //   var wHeight = $(window).height();
+  //   var dHeight = wHeight * 0.4;
+  //   $("#dialog-confirm").dialog("option", "width", dWidth);
+  //   $("#dialog-confirm").dialog("option", "height", dHeight);
+  // });
 });
 function refreshTable(data) {
   // var HTML = '';
@@ -119,9 +152,9 @@ function refreshTable(data) {
     row.append($("<td></td>").html(item.email)); //email
     row.append(
       $("<td></td>").html(
-        '<button id="modifybutton' +
+        '<button id="modBtn' +
           item.s_sn +
-          '" class="modifybutton btn btnBorder"><i class="bi bi-pencil-fill"></i></button>'
+          '" class="modBtn btn btnBorder" data-bs-toggle="modal" data-bs-target="#modBtn"><i class="bi bi-pencil-fill"></i></button>'
       )
     );
     row.append(
@@ -135,58 +168,58 @@ function refreshTable(data) {
   });
 }
 
-function initEdit(response) {
-  var modifyid = $("#cardtable").attr("id").substring(12);
-  $("#mocnname").val(response[0].cnname);
-  $("#moenname").val(response[0].enname);
-  $("#mophone").val(response[0].phone);
-  $("#moemail").val(response[0].email);
-  if (response[0].sex == 0) {
-    $("#modifyman").prop("checked", true);
-    $("#modifywoman").prop("checked", false);
-  } else {
-    $("#modifyman").prop("checked", false);
-    $("#modifywoman").prop("checked", true);
-  }
-  $("#modifysid").val(modifyid);
-  $("#dialog-modifyconfirm").dialog({
-    resizable: true,
-    height: $(window).height() * 0.4, // dialog視窗度
-    width: $(window).width() * 0.4,
-    modal: true,
-    buttons: {
-      // 自訂button名稱
-      Modify: function (e) {
-        // $("#modifyform").submit();
-        var url = "ajax/ajaxCard";
-        var cnname = $("#mocnname").val();
-        var enname = $("#moenname").val();
-        var sex = $('input:radio:checked[name="mosex"]').val();
-        var phone = $("#moenname").val(); //phone
-        var email = $("#moenname").val(); //email
-        var ajaxobj = new AjaxObject(url, "json");
-        ajaxobj.cnname = cnname;
-        ajaxobj.enname = enname;
-        ajaxobj.sex = sex;
-        ajaxobj.id = modifyid;
-        ajaxobj.phone = phone; //phone
-        ajaxobj.email = email; //email
-        ajaxobj.modify();
+// function initEdit(response) {
+//   var modifyid = $("#cardtable").attr("id").substring(12);
+//   $("#mocnname").val(response[0].cnname);
+//   $("#moenname").val(response[0].enname);
+//   $("#mophone").val(response[0].phone);
+//   $("#moemail").val(response[0].email);
+//   if (response[0].sex == 0) {
+//     $("#modifyman").prop("checked", true);
+//     $("#modifywoman").prop("checked", false);
+//   } else {
+//     $("#modifyman").prop("checked", false);
+//     $("#modifywoman").prop("checked", true);
+//   }
+//   $("#modifysid").val(modifyid);
+//   $("#dialog-modifyconfirm").dialog({
+//     resizable: true,
+//     height: $(window).height() * 0.4, // dialog視窗度
+//     width: $(window).width() * 0.4,
+//     modal: true,
+//     buttons: {
+//       // 自訂button名稱
+//       Modify: function (e) {
+//         // $("#modifyform").submit();
+//         var url = "ajax/ajaxCard";
+//         var cnname = $("#mocnname").val();
+//         var enname = $("#moenname").val();
+//         var sex = $('input:radio:checked[name="mosex"]').val();
+//         var phone = $("#moenname").val(); //phone
+//         var email = $("#moenname").val(); //email
+//         var ajaxobj = new AjaxObject(url, "json");
+//         ajaxobj.cnname = cnname;
+//         ajaxobj.enname = enname;
+//         ajaxobj.sex = sex;
+//         ajaxobj.id = modifyid;
+//         ajaxobj.phone = phone; //phone
+//         ajaxobj.email = email; //email
+//         ajaxobj.modify();
 
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-      },
-      ReFill: function () {
-        $("#modifyform")[0].reset();
-      },
-      Cancel: function () {
-        $(this).dialog("close");
-      },
-    },
-    error: function (exception) {
-      alert("Exeption:" + exception);
-    },
-  });
-}
+//         e.preventDefault(); // avoid to execute the actual submit of the form.
+//       },
+//       ReFill: function () {
+//         $("#modifyform")[0].reset();
+//       },
+//       Cancel: function () {
+//         $(this).dialog("close");
+//       },
+//     },
+//     error: function (exception) {
+//       alert("Exeption:" + exception);
+//     },
+//   });
+// }
 
 /**
  *

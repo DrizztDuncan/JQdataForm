@@ -28,3 +28,37 @@ td {
   color: black;
   background-color: #00ff00;
 }
+
+input[type="text"],
+[type="tel"],
+[type="email"] {
+  border: none;
+  /* border-bottom: 1px solid #00ff00; */
+  background-color: black;
+}
+
+.modal-header {
+  width: 100%;
+  border-bottom: 1px dotted #00ff00;
+}
+
+.modal-footer {
+  width: 100%;
+  border-top: 1px dotted #00ff00;
+}
+
+input[type="text"] {
+  width: 300px;
+}
+
+input[type="tel"] {
+  width: 130px;
+}
+
+input[type="radio"] {
+  width: 90px;
+}
+
+input[type="email"] {
+  width: 400px;
+}
