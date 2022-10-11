@@ -18,7 +18,7 @@
 
 ![JQuery](https://cdn.iconscout.com/icon/free/png-256/jquery-8-1175153.png)
 ![Bootstrap](https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo-shadow.png)
-[![Bootstrap][Bootstrap.com]][Bootstrap-url]
+
 <!-- ROADMAP -->
 ## 需求
 - [x] 視覺美化
