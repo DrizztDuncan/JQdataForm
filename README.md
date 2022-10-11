@@ -1,5 +1,8 @@
-# JQdataForm
-![formProjectShot](https://user-images.githubusercontent.com/39251171/194984580-dc9a31e8-732a-4e0c-9fdc-1605ac9b929b.PNG)
+# JQdataForm  
+
+
+![interaction](https://user-images.githubusercontent.com/39251171/194993240-1acdf5c8-004b-4526-9af6-32bb90892ebd.gif)
+
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
@@ -17,11 +20,17 @@
 ![Bootstrap](https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo-shadow.png)
 
 <!-- ROADMAP -->
-## Roadmap
+## 需求
 - [x] 視覺美化
-- [x] UI 互動
-- [x] JQuery 資料調整
-- [ ] debug
+- [x] 拿掉 JQuery UI
+- [ ] 刪除鍵補上確認Dialog
+- [x] Dialog彈出需加上遮罩層，當add,search,edit完畢後才移除遮罩層
+- [x] 滑鼠移到列上時，整列變色
+- [ ] 滑鼠移到人名上面時，顯示tooltip text說明文字，內容格式： {中文名子} {英文名子}-{性別}
+- [x] 加二個欄位: 手機,電子信箱
+- [x] 欄位驗証
+- [ ] 提高JS檔物件化程度
+- [ ] 實作ajax
 
 <!-- bug -->
 ## bug
